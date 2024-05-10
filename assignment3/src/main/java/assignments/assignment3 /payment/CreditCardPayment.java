@@ -1,8 +1,10 @@
 package assignments.assignment3.payment;
-
+// Implementasi kelas pembayaran dengan kartu kredit
 public class CreditCardPayment implements DepeFoodPaymentSystem{
+    // Persentase biaya transaksi
     private static final double TRANSACTION_FEE_PERCENTAGE = 0.02;
 
+    // Metode untuk memproses pembayaran dengan kartu kredit
     @Override
     public long processPayment(long amount) {
         // Hitung biaya transaksi berdasarkan persentase

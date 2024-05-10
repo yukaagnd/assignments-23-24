@@ -4,6 +4,7 @@ import java.util.Scanner;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 
+
 public class OrderGenerator {
     private static final Scanner input = new Scanner(System.in);
     private static final int ORDER_ID_LENGTH = 16;

@@ -3,6 +3,7 @@ package assignments.assignment3;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+// Kelas untuk merepresentasikan pesanan
 public class Order {
     
     private String OrderId;
@@ -11,7 +12,7 @@ public class Order {
     private Restaurant restaurant;
     private boolean orderFinished;
     private Menu[] items;
-
+    // Konstruktor untuk Order
     public Order(String orderId, String tanggal, int ongkir, Restaurant resto, Menu[] items){
         this.OrderId = orderId;
         this.tanggal = tanggal;
@@ -20,12 +21,14 @@ public class Order {
         this.orderFinished = false;
         this.items = items;
     }
+
     public Restaurant getRestaurant() {
         return restaurant;
     }
     public boolean getOrderFinished(){
         return this.orderFinished;
     }
+    // Method untuk mengatur status pesanan selesai
     public void setOrderFinished(boolean orderFinished) {
         this.orderFinished = orderFinished;
     }
@@ -38,9 +41,11 @@ public class Order {
     public int getOngkir() {
         return ongkir;
     }
+    // Method untuk mendapatkan daftar menu yang dipesan
     public Menu[] getItems() {
         return items;
     }
+    // Method untuk mengurutkan daftar menu berdasarkan harga
     public Menu[] getSortedMenu(){
         Menu[] menuArr = new Menu[getItems().length];
         for(int i=0; i < getItems().length;i++){
@@ -59,6 +64,7 @@ public class Order {
         }
         return menuArr;
     }
+    // Method untuk mendapatkan total harga pesanan
     public double getTotalHarga(){
         double sum = 0;
         for(Menu menu: getItems()){

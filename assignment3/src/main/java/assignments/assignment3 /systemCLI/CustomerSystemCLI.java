@@ -20,10 +20,10 @@ import assignments.assignment3.User;
 import assignments.assignment3.MainMenu;
 import assignments.assignment3.OrderGenerator;
 
-//TODO: Extends abstract class yang diberikan
+// Kelas untuk mengelola sistem bagi pelanggan
 public class CustomerSystemCLI extends UserSystemCLI{
     protected static Scanner input = new Scanner(System.in);
-    //TODO: Tambahkan modifier dan buatlah metode ini mengoverride dari Abstract class
+    // Method untuk menangani perintah dalam menu pelanggan
     @Override
     protected boolean handleMenu(int choice){
         switch(choice){
@@ -40,7 +40,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
         return true;
     }
 
-    //TODO: Tambahkan modifier dan buatlah metode ini mengoverride dari Abstract class
+   // Method untuk menampilkan menu pelanggan
     @Override
     protected void displayMenu() {
         System.out.println("\n--------------------------------------------");
@@ -55,6 +55,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
         System.out.print("Pilihan menu: ");
     }
 
+    // Method untuk menangani pembuatan pesanan oleh pelanggan
     protected static void handleBuatPesanan(){
         System.out.println("--------------Buat Pesanan----------------");
         while (true) {
@@ -95,12 +96,14 @@ public class CustomerSystemCLI extends UserSystemCLI{
         }
     }
 
+    // Method untuk memvalidasi pesanan yang diminta oleh pelanggan
     protected static boolean validateRequestPesanan(Restaurant restaurant, List<String> listMenuPesananRequest){
         return listMenuPesananRequest.stream().allMatch(pesanan -> 
             restaurant.getMenu().stream().anyMatch(menu -> menu.getNamaMakanan().equals(pesanan))
         );
     }
 
+    // Method untuk mendapatkan menu yang diminta oleh pelanggan
     protected static Menu[] getMenuRequest(Restaurant restaurant, List<String> listMenuPesananRequest){
         Menu[] menu = new Menu[listMenuPesananRequest.size()];
         for(int i=0;i<menu.length;i++){
@@ -113,6 +116,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
         return menu;
     }
 
+    // Method untuk mendapatkan output pesanan
     protected static String getMenuPesananOutput(Order order){
         StringBuilder pesananBuilder = new StringBuilder();
         DecimalFormat decimalFormat = new DecimalFormat();
@@ -128,6 +132,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
         return pesananBuilder.toString();
     }
 
+    // Method untuk mendapatkan output tagihan pesanan
     protected static String outputBillPesanan(Order order) {
         DecimalFormat decimalFormat = new DecimalFormat();
         DecimalFormatSymbols symbols = new DecimalFormatSymbols();
@@ -150,7 +155,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
                          decimalFormat.format(order.getTotalHarga())
                          );
     }
-
+    // Method untuk mendapatkan restoran berdasarkan nama
     protected static Restaurant getRestaurantByName(String name){
         Optional<Restaurant> restaurantMatched = MainMenu.restoList.stream().filter(restoran -> restoran.getNama().toLowerCase().equals(name.toLowerCase())).findFirst();
         if(restaurantMatched.isPresent()){
@@ -159,6 +164,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
         return null;
     }
 
+    // Method untuk menangani pencetakan tagihan pesanan
     protected static void handleCetakBill(){
         System.out.println("--------------Cetak Bill----------------");
         while (true) {
@@ -176,6 +182,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
         
     }
 
+    // Method untuk mendapatkan pesanan berdasarkan ID
     protected static Order getOrderOrNull(String orderId) {
         for (User user : MainMenu.userList) {
             for (Order order : user.getOrderHistory()) {
@@ -187,6 +194,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
         return null;
     }
 
+    // Method untuk menangani melihat menu restoran
     protected static void handleLihatMenu(){
         System.out.println("--------------Lihat Menu----------------");
         while (true) {
@@ -228,8 +236,8 @@ public class CustomerSystemCLI extends UserSystemCLI{
 
     }
 
+    // Method untuk menangani pembayaran tagihan pesanan
     protected void handleBayarBill(){
-        // TODO: Implementasi method untuk handle ketika customer ingin melihat menu
         System.out.println("--------------Bayar Bill---------------");
         while (true) {
             System.out.print("Order ID: ");
@@ -275,7 +283,7 @@ public class CustomerSystemCLI extends UserSystemCLI{
         }
     }
 
-
+    // Method untuk menangani pembayaran dengan kartu kredit
     protected void handleCreditCardPayment(Order order) {
         CreditCardPayment creditCardPayment = new CreditCardPayment();
         long totalBiaya = (long) order.getTotalHarga();
@@ -296,9 +304,10 @@ public class CustomerSystemCLI extends UserSystemCLI{
         return;
     }
     
+    // Method untuk menangani pembayaran dengan kartu debit
     protected void handleDebitPayment(Order order) {
         DebitPayment debitPayment = new DebitPayment();
-        long totalBayar = (long) debitPayment.processPayment(order.getTotalHarga());
+        long totalBayar = (long) debitPayment.processPayment((long) order.getTotalHarga());
         if (totalBayar == 0) {
             System.out.println("Total harga pesanan tidak memenuhi syarat atau saldo tidak mencukupi");
             return;
@@ -307,18 +316,17 @@ public class CustomerSystemCLI extends UserSystemCLI{
             System.out.println("Saldo tidak mencukupi, mohon menggunakan metode pembayaran lain.");
             return;
         }
-    
-        // Kurangi saldo user
+
         MainMenu.userLoggedIn.setSaldo((long) MainMenu.userLoggedIn.getSaldo() - totalBayar);
         order.setOrderFinished(true);
         Restaurant restaurant = order.getRestaurant();
-        restaurant.setSaldo((long)restaurant.getSaldo() + order.getTotalHarga());
+        restaurant.setSaldo((long)restaurant.getSaldo() + (long) order.getTotalHarga());
     
         System.out.printf("Berhasil Membayar Bill sebesar Rp %d%n", totalBayar);
         return;
     }
     
-
+    // Method untuk menangani pengecekan saldo
     protected void handleCekSaldo(){
         System.out.println("--------------Cek Saldo---------------\n");
         System.out.printf("Sisa saldo sebesar Rp %d%n", MainMenu.userLoggedIn.getSaldo());

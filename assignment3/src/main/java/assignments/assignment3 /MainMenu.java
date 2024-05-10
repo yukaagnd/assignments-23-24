@@ -18,19 +18,21 @@ public class MainMenu {
     public static ArrayList<Restaurant> restoList;
     public static ArrayList<User> userList;
     public static User userLoggedIn;
-    
 
+    // Konstruktor untuk MainMenu
     public MainMenu(Scanner in, LoginManager loginManager) {
         this.input = in;
         this.loginManager = loginManager;
     }
 
+    // Method utama untuk memulai program
     public static void main(String[] args) {
         restoList = new ArrayList<>();
         MainMenu mainMenu = new MainMenu(new Scanner(System.in), new LoginManager(new AdminSystemCLI(), new CustomerSystemCLI()));
         mainMenu.run();
     }
 
+    // Method untuk menjalankan menu utama
     public void run(){
         printHeader();
         boolean exit = false;
@@ -48,6 +50,8 @@ public class MainMenu {
         input.close();
     }
 
+
+    // Method untuk proses login pengguna
     private void login(){
         initUser();
         System.out.println("\nSilakan Login:");
@@ -61,11 +65,12 @@ public class MainMenu {
             System.out.println("Pengguna dengan data tersebut tidak ditemukan!");
         } else {
             System.out.printf("Selamat Datang %s!\n", userLoggedIn.getNama());
-            loginManager.getSystem(userLoggedIn.role).run();
+            loginManager.getSystem(userLoggedIn.role).run(); // Jalankan sistem sesuai peran pengguna
             return;
         }
     }
 
+    // Method untuk mencetak header aplikasi
     private static void printHeader(){
         System.out.println("\n>>=======================================<<");
         System.out.println("|| ___                 ___             _ ||");
@@ -76,6 +81,7 @@ public class MainMenu {
         System.out.println(">>=======================================<<");
     }
 
+    // Method untuk mencetak menu awal
     private static void startMenu(){
         System.out.println("Selamat datang di DepeFood!");
         System.out.println("--------------------------------------------");
@@ -86,6 +92,7 @@ public class MainMenu {
         System.out.print("Pilihan menu: ");
     }
 
+    // Method untuk inisialisasi daftar pengguna
     public static void initUser(){
         userList = new ArrayList<User>();
         userList.add(new User("Thomas N", "9928765403", "thomas.n@gmail.com", "P", "Customer", new DebitPayment(), 500000));
@@ -98,6 +105,7 @@ public class MainMenu {
         userList.add(new User("Admin Baik", "9123912308", "admin.b@gmail.com", "-", "Admin", new CreditCardPayment(), 0));
     }
 
+    // Method untuk mendapatkan pengguna berdasarkan nama dan nomor telepon
     public static User getUser(String nama, String nomorTelepon){
         for(User user: userList){
             if(user.getNama().equals(nama.trim()) && user.getNomorTelepon().equals(nomorTelepon.trim())){

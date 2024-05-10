@@ -10,10 +10,10 @@ import assignments.assignment3.MainMenu;
 import assignments.assignment3.User;
 import assignments.assignment3.Menu;
 
-//TODO: Extends Abstract yang diberikan
+// Kelas untuk mengelola sistem bagi admin
 public class AdminSystemCLI extends UserSystemCLI{
     protected static Scanner input = new Scanner(System.in);
-    //TODO: Tambahkan modifier dan buatlah metode ini mengoverride dari Abstract class
+    // Method untuk menangani perintah dalam menu admin
     @Override
     protected boolean handleMenu(int command){
         switch(command){
@@ -25,7 +25,7 @@ public class AdminSystemCLI extends UserSystemCLI{
         return true;
     }
 
-    //TODO: Tambahkan modifier dan buatlah metode ini mengoverride dari Abstract class
+    // Method untuk menampilkan menu admin
     @Override
     protected void displayMenu() {
         System.out.println("\n--------------------------------------------");
@@ -37,6 +37,7 @@ public class AdminSystemCLI extends UserSystemCLI{
         System.out.print("Pilihan menu: ");
     }
 
+    // Method untuk menangani penambahan restoran oleh admin
     protected static void handleTambahRestoran(){
         System.out.println("--------------Tambah Restoran---------------");
         Restaurant restaurant = null;
@@ -49,6 +50,7 @@ public class AdminSystemCLI extends UserSystemCLI{
         System.out.print("Restaurant "+restaurant.getNama()+" Berhasil terdaftar." );
     }
 
+    // Method untuk menangani penambahan menu dalam restoran oleh admin
     protected static Restaurant handleTambahMenuRestaurant(Restaurant restoran){
         System.out.print("Jumlah Makanan: ");
         int  jumlahMenu = Integer.parseInt(input.nextLine().trim());
@@ -75,10 +77,12 @@ public class AdminSystemCLI extends UserSystemCLI{
         return isMenuValid? restoran : null; 
     }
 
+    // Method untuk memeriksa apakah sebuah string terdiri dari digit-digit angka
     protected static boolean checkIsDigit(String digits){
         return  digits.chars().allMatch(Character::isDigit);
     }
     
+    // Method untuk mendapatkan nama restoran yang valid
     protected static String getValidRestaurantName() {
         String name = "";
         boolean isRestaurantNameValid = false;
@@ -104,7 +108,7 @@ public class AdminSystemCLI extends UserSystemCLI{
         return name;
     }
     
-
+    // Method untuk menangani penghapusan restoran oleh admin
     protected static void handleHapusRestoran(){
         System.out.println("--------------Hapus Restoran----------------");
         boolean isActionDeleteEnded = false;

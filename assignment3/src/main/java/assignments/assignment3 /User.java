@@ -5,6 +5,7 @@ import assignments.assignment3.payment.CreditCardPayment;
 import assignments.assignment3.payment.DebitPayment;
 import assignments.assignment3.payment.DepeFoodPaymentSystem;
 
+// Kelas untuk merepresentasikan pengguna
 public class User {
     
     private String nama;
@@ -16,6 +17,7 @@ public class User {
     private long saldo;
     private String lokasi;
 
+    // Konstruktor untuk User
     public User(String nama, String nomorTelepon, String email, String lokasi, String role, DepeFoodPaymentSystem payment, long saldo){
         this.nama = nama;
         this.nomorTelepon = nomorTelepon;
@@ -58,6 +60,7 @@ public class User {
     public ArrayList<Order> getOrderHistory() {
         return orderHistory;
     }
+    // Method untuk memeriksa apakah pesanan dimiliki oleh pengguna
     public boolean isOrderBelongsToUser(String orderId) {
         for (Order order : orderHistory) {
             if (order.getOrderId().equals(orderId)) {
@@ -66,6 +69,7 @@ public class User {
         }
         return false;
     }
+    // Method untuk merepresentasikan objek User dalam bentuk String
     @Override
     public String toString() {
         // TODO Auto-generated method stub

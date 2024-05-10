@@ -12,8 +12,13 @@ import assignments.assignment1.OrderGenerator;
 public class MainMenu {
     private static final Scanner input = new Scanner(System.in);
     private static ArrayList<Restaurant> restoList;
+<<<<<<< HEAD
     public static ArrayList<User> userList;
     public static User userLoggedIn;
+=======
+    private static ArrayList<User> userList;
+    private static User userLoggedIn;
+>>>>>>> 2de87934941926ea08452f88727b4221a5edf9d5
 
     public static void main(String[] args) {
         restoList = new ArrayList<>();

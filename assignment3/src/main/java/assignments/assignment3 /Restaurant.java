@@ -5,11 +5,13 @@ import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+// Kelas untuk merepresentasikan restoran
 public class Restaurant {
     private String nama;
     private ArrayList<Menu> menu;
     private long saldo = 0;
 
+    // Konstruktor untuk Restaurant
     public Restaurant(String nama){
         this.nama = nama;
         this.menu = new ArrayList<>();
@@ -30,6 +32,7 @@ public class Restaurant {
     public ArrayList<Menu> getMenu() {
         return menu;
     }
+    // Method untuk mengurutkan menu berdasarkan harga
     private ArrayList<Menu> sortMenu(){
         Menu[] menuArr = new Menu[menu.size()];
         for(int i=0; i < menu.size();i++){
@@ -48,6 +51,8 @@ public class Restaurant {
         }
         return new ArrayList<>(Arrays.asList(menuArr));
     }
+
+    // Method untuk mencetak daftar menu restoran
     public String printMenu() {
         StringBuilder menuString = new StringBuilder("Menu:\n");
         DecimalFormat decimalFormat = new DecimalFormat();
