@@ -49,13 +49,13 @@ public class OrderGenerator {
             tanggalOrder = input.nextLine();
             // Memvalidasi input tanggal apakah sudah sesuai dengan format
             if (tanggalOrder.length() != 10 || tanggalOrder.charAt(2) != '/' || tanggalOrder.charAt(5) != '/'){
-                System.out.println("Tanggal pemesanan dalam format DD/MM/YYYY!");
-                continue;
+                    System.out.println("Tanggal pemesanan dalam format DD/MM/YYYY!");
+                    continue;
             }
-
+            
             // Memvalidasi input no telepon apakah berupa digit
             System.out.print("No. Telpon: ");
-            noTelepon = input.nextLine();
+            noTelepon = input.nextLine(); 
             if (!isNumeric(noTelepon)){
                 System.out.println("Harap masukkan nomor telepon dalam bentuk bilangan bulat positif.");
                 continue;
@@ -83,7 +83,7 @@ public class OrderGenerator {
     public static String handleGenerateBill(){
         String orderID;
         String lokasiPengiriman;
-
+        
         while (true){
             System.out.println();
             System.out.print("Order ID: ");
@@ -110,7 +110,7 @@ public class OrderGenerator {
             System.out.print("Lokasi Pengiriman: ");
             lokasiPengiriman = input.nextLine().toUpperCase();
             if (lokasiPengiriman.equals("P") || lokasiPengiriman.equals("U") || lokasiPengiriman.equals("T") || lokasiPengiriman.equals("S") || lokasiPengiriman.equals("B")){;}
-            else {
+            else { 
                 System.out.println("Harap masukkan lokasi pengiriman yang ada pada jangkauan!");
                 continue;
             }
@@ -121,14 +121,14 @@ public class OrderGenerator {
 
     }
 
-    // Method untuk menyatukan bill sesuai ketentuan
+     // Method untuk menyatukan bill sesuai ketentuan
     public static String generateBill(String OrderID, String lokasi){
         String bill = "";
         bill += "Bill:\n";
         bill += "Order ID: " + OrderID + "\n";
         bill += "Tanggal Pemesanan: " + OrderID.substring(4,6) + "/" + OrderID.substring(6,8) + "/" + OrderID.substring(8,12) + "\n";
         bill += "Lokasi Pengiriman: " + lokasi.toUpperCase() + "\n";
-        // Mengkategorikan biaya ongkos kirim
+        // Mengkategorikan biaya ongkos kirim 
         switch (lokasi.toUpperCase()) {
             case "P":
                 bill += "Biaya Ongkos Kirim: Rp 10.000\n";
@@ -159,12 +159,12 @@ public class OrderGenerator {
 
             if (command.equals("1")){
                 System.out.println("Order ID " + handleMenuGenerateID() + " diterima!");
-            }
-
+            } 
+            
             else if (command.equals("2")){
                 System.out.println(handleGenerateBill());
-            }
-
+            } 
+            
             else {
                 if (command.equals("3")){
                     System.out.println("Terima kasih telah menggunakan DepeFood!");
@@ -198,16 +198,16 @@ public class OrderGenerator {
     private static String cekSum(String kode) {
         int genap = 0;
         int ganjil = 0;
-
+    
         for (int i = 0; i < kode.length(); i++) {
             char kodeNow = kode.charAt(i);
             int asciiValue = (int) kodeNow;
-            // Mencari nilai ascii dari tiap karakternya
+            // Mencari nilai ascii dari tiap karakternya 
             if (i % 2 == 0) {
                 // Jika berupa angka, maka yang akan dijumlahkan adalah nilai dari angka itu sendiri
                 if (asciiValue < 58) {
                     genap += Character.getNumericValue(kodeNow);
-                    // Jika berupa huruf maka yang akan dijumlahkan adalah nilai ascii dari huruf tersebut - 55
+                // Jika berupa huruf maka yang akan dijumlahkan adalah nilai ascii dari huruf tersebut - 55
                 } else {
                     genap += asciiValue - 55;
                 }
@@ -219,7 +219,7 @@ public class OrderGenerator {
                 }
             }
         }
-
+        
         String fixGenap;
         String fixGanjil;
         genap = genap % 36;
@@ -229,7 +229,7 @@ public class OrderGenerator {
         } else {
             fixGenap = Integer.toString(genap);
         }
-
+    
         ganjil = ganjil % 36;
         if (ganjil > 9) {
             ganjil = (char) (ganjil + 55);
@@ -237,20 +237,20 @@ public class OrderGenerator {
         }else {
             fixGanjil = Integer.toString(ganjil);
         }
-
+        
         return fixGenap + fixGanjil;
     }
 
-    // Method untuk ngecheck apakah isi String berupa angka
+    // Method untuk ngecheck apakah isi String berupa angka 
     private static boolean isNumeric(String str) {
         char[] var4;
         int var3 = (var4 = str.toCharArray()).length;
-
+  
         for(int var2 = 0; var2 < var3; ++var2) {
-            char c = var4[var2];
-            if (!Character.isDigit(c)) {
-                return false;
-            }
+           char c = var4[var2];
+           if (!Character.isDigit(c)) {
+              return false;
+           }
         }
         return true;
     }
@@ -263,5 +263,5 @@ public class OrderGenerator {
         }
         return result;
     }
-
+    
 }
