@@ -22,4 +22,5 @@ public class Menu {
     public void setHarga(double harga) {
         this.harga = harga;
     }
+     
 }
