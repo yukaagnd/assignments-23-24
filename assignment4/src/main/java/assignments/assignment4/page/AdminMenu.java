@@ -28,6 +28,10 @@ import javafx.scene.text.Font;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
+/**
+ * Kelas AdminMenu menangani antarmuka pengguna dan logika untuk admin.
+ * Ini memungkinkan admin menambah restoran, menambah menu, dan melihat daftar restoran.
+ */
 
 public class AdminMenu extends MemberMenu {
     private Stage stage;
@@ -57,6 +61,11 @@ public class AdminMenu extends MemberMenu {
         this.viewRestaurantsScene = createViewRestaurantsForm();
     }
 
+     /**
+     * Membuat formulir untuk antarmuka menu utama admin.
+     *
+     * @return Scene untuk formulir menu utama admin.
+     */
     @Override
     public Scene createBaseMenu() {
         VBox menuLayout = new VBox(10);

@@ -34,6 +34,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * Kelas CustomerMenu mewakili menu utama untuk pelanggan dalam aplikasi pemesanan makanan.
+ * Kelas ini menyediakan fungsionalitas untuk membuat pesanan, mencetak tagihan, membayar tagihan, dan memeriksa saldo pengguna.
+ */
+
 public class CustomerMenu extends MemberMenu{
     private Stage stage;
     private Scene scene;
@@ -53,6 +58,12 @@ public class CustomerMenu extends MemberMenu{
     protected String textColor = "195942ff";
     protected String buttolColor = "f2a29bff";
     protected Color textFillColor = Color.web("#195942");
+
+    /**
+     * Konstruktor untuk kelas CustomerMenu.
+     *
+     * Menerima stage utama aplikasi, referensi ke instance MainApp, dan pengguna yang sedang masuk.
+     */
 
     public CustomerMenu(Stage stage, MainApp mainApp, User user) {
         this.stage = stage;
@@ -300,6 +311,7 @@ public class CustomerMenu extends MemberMenu{
             if (order.getOrderFinished) {
                 showAlert("Peringatan", "Order sudah selesai!", "Pengguna sudah melakukan pembayaran", Alert.AlertType.WARNING);
                 return;
+            }
             else{
                 if (pilihanPembayaran == 1) {
                     if (!(user.getPayment() instanceof CreditCardPayment)) {

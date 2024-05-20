@@ -30,6 +30,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Kelas BillPrinter menangani antarmuka pengguna dan logika untuk menampilkan tagihan.
+ * Ini memungkinkan pengguna melihat tagihan untuk pesanan tertentu dengan memasukkan ID Pesanan.
+ */
+
 public class BillPrinter {
     private Stage stage;
     private MainApp mainApp;
