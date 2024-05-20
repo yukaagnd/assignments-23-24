@@ -282,7 +282,7 @@ public class CustomerMenu extends MemberMenu{
             // Membuat pesanan
             Order order = new Order(orderID, tanggalPemesanan,  OrderGenerator.calculateDeliveryCost(user.getLokasi()), restaurant, getMenuRequest(restaurant, menuItems)
             );
-            System.out.printf("Pesanan dengan ID %s diterima!", order.getOrderId().toUpperCase());
+            System.out.printf("Pesanan dengan ID %s diterima!", order.Id().toUpperCase());
             user.addOrderHistory(order);
             showAlert("Sukses", null, ("Pesanan dengan ID"+ orderID + " berhasil dibuat!"), AlertType.INFORMATION);
             stage.setScene(scene);
@@ -308,7 +308,7 @@ public class CustomerMenu extends MemberMenu{
                 showAlert("Peringatan", "Order ID tidak ditemukan!", "Masukkan Order ID yang valid.", Alert.AlertType.WARNING);
                 return;
             }
-            if (order.getOrderFinished) {
+            if (order.getOrderFinished()) {
                 showAlert("Peringatan", "Order sudah selesai!", "Pengguna sudah melakukan pembayaran", Alert.AlertType.WARNING);
                 return;
             }
