@@ -282,7 +282,7 @@ public class CustomerMenu extends MemberMenu{
             // Membuat pesanan
             Order order = new Order(orderID, tanggalPemesanan,  OrderGenerator.calculateDeliveryCost(user.getLokasi()), restaurant, getMenuRequest(restaurant, menuItems)
             );
-            System.out.printf("Pesanan dengan ID %s diterima!", order.Id().toUpperCase());
+            System.out.printf("Pesanan dengan ID %s diterima!", orderID.toUpperCase());
             user.addOrderHistory(order);
             showAlert("Sukses", null, ("Pesanan dengan ID"+ orderID + " berhasil dibuat!"), AlertType.INFORMATION);
             stage.setScene(scene);
