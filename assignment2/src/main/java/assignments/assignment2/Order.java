@@ -17,6 +17,7 @@ public class Order {
         this.tanggalPemesanan = tanggal;
         this.statusPesanan = "Not Finished";
     }
+    
     // Method untuk mengambil dan mengeset variable private di class Order
     public int getBiayaOngkosKirim() {
         return biayaOngkosKirim;
