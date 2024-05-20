@@ -1,131 +1,72 @@
-package assignments.assignment2;
+package main.java.assignments.assignment2;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Order {
-<<<<<<< HEAD
-    
-    private String OrderId;
-=======
-
+    private int biayaOngkosKirim;
     private String orderId;
->>>>>>> 2de87934941926ea08452f88727b4221a5edf9d5
-    private String tanggal;
-    private int ongkir;
     private Restaurant restaurant;
-    private boolean orderFinished;
-    private Menu[] items;
-
-<<<<<<< HEAD
-    public Order(String orderId, String tanggal, int ongkir, Restaurant resto, Menu[] items){
-        this.OrderId = orderId;
-=======
-    public Order(String orderId, String tanggal, int ongkir, Restaurant resto, Menu[] items) {
+    private String tanggalPemesanan;
+    private ArrayList <Menu> pesananMenuList;
+    private String statusPesanan;
+    // Konstruktor untuk membuat objek Order dengan orderId, tanggal, biaya ongkir, dan objek Restaurant tertentu
+    public Order(String orderId, String tanggal, int ongkir, Restaurant resto){
+        this.biayaOngkosKirim = ongkir;
         this.orderId = orderId;
->>>>>>> 2de87934941926ea08452f88727b4221a5edf9d5
-        this.tanggal = tanggal;
-        this.ongkir = ongkir;
         this.restaurant = resto;
-        this.orderFinished = false;
-        this.items = items;
+        this.tanggalPemesanan = tanggal;
+        this.statusPesanan = "Not Finished";
     }
-<<<<<<< HEAD
-    public Restaurant getRestaurant() {
-        return restaurant;
-    }
-    public boolean getOrderFinished(){
-        return this.orderFinished;
-    }
-    public void setOrderFinished(boolean orderFinished) {
-        this.orderFinished = orderFinished;
-    }
-    public String getOrderId() {
-        return OrderId;
-    }
-    public String getTanggal() {
-        return tanggal;
-    }
-    public int getOngkir() {
-        return ongkir;
-    }
-    public Menu[] getItems() {
-        return items;
-    }
-    public Menu[] getSortedMenu(){
-        Menu[] menuArr = new Menu[getItems().length];
-        for(int i=0; i < getItems().length;i++){
-            menuArr[i] = getItems()[i];
-        }
-        int n = menuArr.length;
-        for (int i = 0; i < n-1; i++) {
-            for (int j = 0; j < n-i-1; j++) {
-                if (menuArr[j].getHarga() > menuArr[j+1].getHarga()) {
-                    
-                    Menu temp = menuArr[j];
-                    menuArr[j] = menuArr[j+1];
-                    menuArr[j+1] = temp;
-=======
-
-    public Restaurant getRestaurant() {
-        return restaurant;
+    // Method untuk mengambil dan mengeset variable private di class Order
+    public int getBiayaOngkosKirim() {
+        return biayaOngkosKirim;
     }
 
-    public boolean getOrderFinished() {
-        return this.orderFinished;
-    }
-
-    public void setOrderFinished(boolean orderFinished) {
-        this.orderFinished = orderFinished;
+    public void setBiayaOngkosKirim(int biayaOngkosKirim) {
+        this.biayaOngkosKirim = biayaOngkosKirim;
     }
 
     public String getOrderId() {
         return orderId;
     }
 
-    public String getTanggal() {
-        return tanggal;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
-    public int getOngkir() {
-        return ongkir;
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 
-    public Menu[] getItems() {
-        return items;
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
-    public Menu[] getSortedMenu() {
-        Menu[] menuArr = new Menu[getItems().length];
-        for (int i = 0; i < getItems().length; i++) {
-            menuArr[i] = getItems()[i];
+    public String getTanggalPemesanan() {
+        return tanggalPemesanan;
+    }
+
+    public void setTanggalPemesanan(String tanggalPemesanan) {
+        this.tanggalPemesanan = tanggalPemesanan;
+    }
+
+    // Method untuk menambahkan menu ke dalam pesanan
+    public void addPesanan(Menu menuItem) {
+        if (pesananMenuList == null) {
+            pesananMenuList = new ArrayList<>();
         }
-        int n = menuArr.length;
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
-                if (menuArr[j].getHarga() > menuArr[j + 1].getHarga()) {
-
-                    Menu temp = menuArr[j];
-                    menuArr[j] = menuArr[j + 1];
-                    menuArr[j + 1] = temp;
->>>>>>> 2de87934941926ea08452f88727b4221a5edf9d5
-                }
-            }
-        }
-        return menuArr;
+        pesananMenuList.add(menuItem);
     }
-<<<<<<< HEAD
-    public double getTotalHarga(){
-        double sum = 0;
-        for(Menu menu: getItems()){
-=======
 
-    public double getTotalHarga() {
-        double sum = 0;
-        for (Menu menu : getItems()) {
->>>>>>> 2de87934941926ea08452f88727b4221a5edf9d5
-            sum += menu.getHarga();
-        }
-        return sum += getOngkir();
+    public String getStatusPesanan() {
+        return statusPesanan;
+    }
+
+    public void setStatusPesanan(String statusPesanan) {
+        this.statusPesanan = statusPesanan;
+    }
+
+    public ArrayList<Menu> getPesananMenuList() {
+        return pesananMenuList;
     }
 }
