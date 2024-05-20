@@ -14,7 +14,7 @@ public class Restaurant {
     public ArrayList < Menu > getMenuList() {
         return menuList;
     }
-
+    
     public void addMenu(Menu menuItem) {
         menuList.add(menuItem);
     }
